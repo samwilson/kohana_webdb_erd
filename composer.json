@@ -1,0 +1,26 @@
+{
+	"name":        "samwilson/kohana_webdb_erd",
+	"type":        "kohana-module",
+	"description": "A module for WebDB, for producing Graphviz-rendered Entity Relationship Diagrams",
+	"homepage":    "https://github.com/samwilson/kohana_webdb_erd",
+	"license":     "Simplified BSD",
+	"keywords":    ["kohana", "webdb", "mysql", "erd"],
+	"authors": [
+		{
+			"name":     "Sam Wilson",
+			"email":    "sam@samwilson.id.au",
+			"homepage": "http://samwilson.id.au",
+			"role":     "developer"
+		}
+	],
+	"support": {
+		"issues":   "https://github.com/samwilson/kohana_webdb_erd/issues",
+		"source":   "https://github.com/samwilson/kohana_webdb_erd"
+	},
+	"require": {
+		"php":                    ">=5.3",
+		"composer/installers":    "~1.0",
+		"kohana/core":            ">=3.3",
+		"samwilson/kohana_webdb": "*"
+	},
+}
