@@ -1,8 +1,11 @@
 <h2>Entity Relationship Diagram for <?php echo WebDB_Text::titlecase($database->get_name()) ?></h2>
 
-<p class="webdb erd">
-	<img src="<?php echo Route::url('webdb_erd', array('dbname'=>$database->get_name(), 'action'=>'png')).URL::query() ?>"
-		 alt="Entity Relationship Diagram for <?php echo $database->get_name() ?>" />
+<?php $url = Route::url('webdb_erd', array('dbname'=>$database->get_name(), 'action'=>'png')).URL::query() ?>
+<p>
+	<a href="<?php echo $url ?>">View this image.</a>
+</p>
+<p>
+	<img src="<?php echo $url ?>" alt="Entity Relationship Diagram for <?php echo $database->get_name() ?>" />
 </p>
 
 <h2>Change displayed tables</h2>

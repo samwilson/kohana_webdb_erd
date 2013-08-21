@@ -2,15 +2,18 @@
 
 class Controller_WebDB_ERD extends Controller {
 
+	/** @var Webdb_DBMS */
+	protected $dbms;
+
 	/** @var WebDB_DBMS_Database The current database */
 	protected $database;
 
 	public function before()
 	{
-		$dbms = new WebDB_DBMS;
-		$dbms->connect();
+		$this->dbms = new WebDB_DBMS;
+		$this->dbms->connect();
 		$dbname = $this->request->param('dbname');
-		$this->database = $dbms->get_database($dbname);
+		$this->database = $this->dbms->get_database($dbname);
 
 		$this->selected_tables = array();
 		foreach ($this->database->get_tables() as $table)
@@ -44,8 +47,8 @@ class Controller_WebDB_ERD extends Controller {
 		// Template
 		$template = View::factory('template');
 		$template->database = $this->database;
-		$template->databases = array();
-		$template->tables = array();
+		$template->databases = $this->dbms->list_dbs();
+		$template->tables = $this->database->get_tables(TRUE);
 		$template->table = '';
 		$template->controller = 'ERD';
 		$template->action = 'ERD';
