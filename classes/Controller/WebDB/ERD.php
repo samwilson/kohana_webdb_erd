@@ -11,12 +11,55 @@ class Controller_WebDB_ERD extends Controller {
 		$dbms->connect();
 		$dbname = $this->request->param('dbname');
 		$this->database = $dbms->get_database($dbname);
+
+		$this->selected_tables = array();
+		foreach ($this->database->get_tables() as $table)
+		{
+			// If any tables are requested, only show them
+			if (count($_GET) > 0)
+			{
+				if (isset($_GET[$table->get_name()]))
+				{
+					$this->selected_tables[] = $table->get_name();
+				}
+			}
+			else // Otherwise, default to all linked tables
+			{
+				$referenced = count($table->get_referencing_tables()) > 0;
+				$referencing = count($table->get_referenced_tables()) > 0;
+				if ($referenced OR $referencing)
+				{
+					$this->selected_tables[] = $table->get_name();
+				}
+			}
+		}
+	}
+
+	public function action_html()
+	{
+		$view = View::factory('webdb/erd/html');
+		$view->database = $this->database;
+		$view->selected_tables = $this->selected_tables;
+
+		// Template
+		$template = View::factory('template');
+		$template->database = $this->database;
+		$template->databases = array();
+		$template->tables = array();
+		$template->table = '';
+		$template->controller = 'ERD';
+		$template->action = 'ERD';
+		$template->content = $view->render();
+
+		// Response
+		$this->response->body($template->render());
 	}
 
 	public function action_dot()
 	{
 		$view = View::factory('webdb/erd/dot');
 		$view->database = $this->database;
+		$view->selected_tables = $this->selected_tables;
 		$this->response->headers('Content-Type', 'text/plain');
 		$this->response->body($view->render());
 	}

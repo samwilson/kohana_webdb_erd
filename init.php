@@ -3,5 +3,5 @@
 Route::set('webdb_erd', '<dbname>/erd(.<action>)')->defaults(array(
 	'directory'  => 'WebDB',
 	'controller' => 'ERD',
-	'action' => 'png',
+	'action' => 'html',
 ));
