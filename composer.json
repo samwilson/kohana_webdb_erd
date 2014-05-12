@@ -18,6 +18,6 @@
 		"source":   "https://github.com/samwilson/kohana_webdb_erd"
 	},
 	"require": {
-		"samwilson/kohana_webdb": "*"
+		"samwilson/kohana_webdb": "4.3.*"
 	}
 }

@@ -5,3 +5,5 @@ Route::set('webdb_erd', '<dbname>/erd(.<action>)')->defaults(array(
 	'controller' => 'ERD',
 	'action' => 'html',
 ));
+
+Plugins::register('views.template.db-tools', 'WebDB_ERD::link');
