@@ -16,8 +16,5 @@
 	"support": {
 		"issues":   "https://github.com/samwilson/kohana_webdb_erd/issues",
 		"source":   "https://github.com/samwilson/kohana_webdb_erd"
-	},
-	"require": {
-		"samwilson/kohana_webdb": "4.3.*"
 	}
 }
